@@ -9,6 +9,7 @@ class ChessModel {
     val chessModel = arrayListOf(arrayListOf<ChessPiece?>())
     init {
         reset()
+        movePiece(0, 0, 2, 5)
     }
 
     private fun reset(){
@@ -41,7 +42,18 @@ class ChessModel {
         return null
     }
 
-    fun getChessBoard(): ChessModel{
+    private fun movePiece(fromRow: Int, fromCol: Int, toRow: Int, toCol: Int){
+        val movingPiece = pieceAt(fromRow, fromCol) ?: return
+
+        pieceAt(toRow, toCol)?.let {
+            if (it.player == movingPiece.player) return
+            piecesBox.remove(it)
+        }
+        piecesBox.remove(movingPiece)
+        piecesBox.add(ChessPiece(toCol, toRow, movingPiece.player, movingPiece.rank, movingPiece.resId))
+    }
+
+    fun getChessBoard(): ArrayList<ArrayList<ChessPiece?>>{
         chessModel.clear()
         for (row in 7 downTo 0){
             val rowArrayList = arrayListOf<ChessPiece?>()
@@ -55,6 +67,7 @@ class ChessModel {
             }
             chessModel.add(rowArrayList)
         }
-        return this
+        return chessModel
     }
+
 }

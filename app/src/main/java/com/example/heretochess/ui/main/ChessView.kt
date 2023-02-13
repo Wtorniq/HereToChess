@@ -18,32 +18,33 @@ class ChessView(context: Context, attributeSet: AttributeSet) : View(context, at
     private var boardLeft = 0
     private var boardTop = 0
     private var model = arrayListOf(arrayListOf<ChessPiece?>())
-    private val resIdSet = setOf(
-        R.drawable.white_king,
-        R.drawable.white_queen,
-        R.drawable.white_bishop,
-        R.drawable.white_knight,
-        R.drawable.white_pawn,
-        R.drawable.white_rook,
-        R.drawable.black_bishop,
-        R.drawable.black_king,
-        R.drawable.black_knight,
-        R.drawable.black_pawn,
-        R.drawable.black_queen,
-        R.drawable.black_rook
-    )
-    private val bitmaps = mutableMapOf<Int, Bitmap>()
+//    private val resIdSet = setOf(
+//        R.drawable.white_king,
+//        R.drawable.white_queen,
+//        R.drawable.white_bishop,
+//        R.drawable.white_knight,
+//        R.drawable.white_pawn,
+//        R.drawable.white_rook,
+//        R.drawable.black_bishop,
+//        R.drawable.black_king,
+//        R.drawable.black_knight,
+//        R.drawable.black_pawn,
+//        R.drawable.black_queen,
+//        R.drawable.black_rook
+//    )
+//    private val bitmaps = mutableMapOf<Int, Bitmap>()
 
-    init {
-        loadBitmaps()
-    }
+//    init {
+//        loadBitmaps()
+//    }
 
-    fun setModel(addedModel: ChessModel){
-        model = addedModel.chessModel
+    fun setModel(addedModel: ArrayList<ArrayList<ChessPiece?>>){
+        model = addedModel
     }
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+        canvas ?: return
         squareSize = width / 8 - margin / 8
         boardSize = squareSize * 8
 
@@ -53,7 +54,7 @@ class ChessView(context: Context, attributeSet: AttributeSet) : View(context, at
         drawPieces(canvas)
     }
 
-    private fun drawPieces(canvas: Canvas?){
+    private fun drawPieces(canvas: Canvas){
         model.forEach { row ->
             row.forEach { piece ->
                 piece?.let {
@@ -61,24 +62,21 @@ class ChessView(context: Context, attributeSet: AttributeSet) : View(context, at
                 }
             }
         }
-//        drawPieceAt(canvas, 0, 0, R.drawable.black_queen)
-//        drawPieceAt(canvas, 7, 7, R.drawable.white_queen)
     }
 
-    private fun drawPieceAt(canvas: Canvas?, row: Int, col: Int, pieceId: Int) {
+    private fun drawPieceAt(canvas: Canvas, row: Int, col: Int, pieceId: Int) {
         val rect = makeRect(row, col)
-        val bitmap = bitmaps[pieceId]!!
-        canvas?.drawBitmap(bitmap, null, rect, paint)
+        val bitmap = BitmapFactory.decodeResource(resources, pieceId)
+        canvas.drawBitmap(bitmap, null, rect, paint)
     }
 
-    private fun loadBitmaps(){
-        resIdSet.forEach{
-            bitmaps[it] = BitmapFactory.decodeResource(resources, it)
-        }
-    }
+//    private fun loadBitmaps(){
+//        resIdSet.forEach{
+//            bitmaps[it] = BitmapFactory.decodeResource(resources, it)
+//        }
+//    }
 
-    private fun buildChessBoard(canvas: Canvas?){
-
+    private fun buildChessBoard(canvas: Canvas){
         for (row in 0..7) {
             for (col in 0 ..7) {
                 if ((row + col) % 2 == 0) {
@@ -87,7 +85,7 @@ class ChessView(context: Context, attributeSet: AttributeSet) : View(context, at
                     paint.color = Color.DKGRAY
                 }
                 val rect = makeRect(row, col)
-                canvas!!.drawRect(rect, paint)
+                canvas.drawRect(rect, paint)
             }
         }
     }
