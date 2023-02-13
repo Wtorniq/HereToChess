@@ -5,6 +5,9 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import com.example.heretochess.R
+import com.example.heretochess.model.ChessModel
+import com.example.heretochess.model.ChessPiece
+import com.example.heretochess.model.ChessPlayer
 
 class ChessView(context: Context, attributeSet: AttributeSet) : View(context, attributeSet) {
 
@@ -14,6 +17,7 @@ class ChessView(context: Context, attributeSet: AttributeSet) : View(context, at
     private var boardSize = 0
     private var boardLeft = 0
     private var boardTop = 0
+    private var model = arrayListOf(arrayListOf<ChessPiece?>())
     private val resIdSet = setOf(
         R.drawable.white_king,
         R.drawable.white_queen,
@@ -34,6 +38,10 @@ class ChessView(context: Context, attributeSet: AttributeSet) : View(context, at
         loadBitmaps()
     }
 
+    fun setModel(addedModel: ChessModel){
+        model = addedModel.chessModel
+    }
+
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         squareSize = width / 8 - margin / 8
@@ -46,8 +54,15 @@ class ChessView(context: Context, attributeSet: AttributeSet) : View(context, at
     }
 
     private fun drawPieces(canvas: Canvas?){
-        drawPieceAt(canvas, 0, 0, R.drawable.black_queen)
-        drawPieceAt(canvas, 7, 7, R.drawable.white_queen)
+        model.forEach { row ->
+            row.forEach { piece ->
+                piece?.let {
+                    drawPieceAt(canvas, piece.col, piece.row, piece.resId)
+                }
+            }
+        }
+//        drawPieceAt(canvas, 0, 0, R.drawable.black_queen)
+//        drawPieceAt(canvas, 7, 7, R.drawable.white_queen)
     }
 
     private fun drawPieceAt(canvas: Canvas?, row: Int, col: Int, pieceId: Int) {

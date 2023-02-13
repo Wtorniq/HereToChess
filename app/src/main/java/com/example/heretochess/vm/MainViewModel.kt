@@ -9,9 +9,9 @@ import com.example.heretochess.model.ChessModel
 
 class MainViewModel(private val model: ChessModel) : ViewModel() {
 
-    private val liveData = MutableLiveData<String>()
+    private val liveData = MutableLiveData<ChessModel>()
 
-    fun getLiveData() : LiveData<String> = liveData
+    fun getLiveData() : LiveData<ChessModel> = liveData
 
     fun getBoard() = getBoardFromModel()
 
