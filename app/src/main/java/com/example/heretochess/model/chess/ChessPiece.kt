@@ -1,4 +1,4 @@
-package com.example.heretochess.model
+package com.example.heretochess.model.chess
 
 data class ChessPiece(
     val col: Int,

@@ -1,19 +1,17 @@
-package com.example.heretochess.model
+package com.example.heretochess.model.chess
 
 import com.example.heretochess.R
-import dagger.Module
-import dagger.Provides
 
 class ChessModel {
     private val piecesBox = mutableSetOf<ChessPiece>()
-    val chessModel = arrayListOf(arrayListOf<ChessPiece?>())
+    private val chessModel = arrayListOf(arrayListOf<ChessPiece?>())
     init {
         reset()
-        movePiece(0, 0, 2, 5)
     }
 
     private fun reset(){
         piecesBox.removeAll(piecesBox)
+/*
         for (i in 0..1){
             piecesBox.add(ChessPiece(0 + (i * 7), 7, ChessPlayer.WHITE, ChessRank.ROOK, R.drawable.white_rook))
             piecesBox.add(ChessPiece(0 + (i * 7), 0, ChessPlayer.BLACK, ChessRank.ROOK, R.drawable.black_rook))
@@ -30,6 +28,7 @@ class ChessModel {
         }
         piecesBox.add(ChessPiece(3, 7, ChessPlayer.WHITE, ChessRank.QUEEN, R.drawable.white_queen))
         piecesBox.add(ChessPiece(3, 0, ChessPlayer.BLACK, ChessRank.QUEEN, R.drawable.black_queen))
+*/
 
         piecesBox.add(ChessPiece(4, 7, ChessPlayer.WHITE, ChessRank.KING, R.drawable.white_king))
         piecesBox.add(ChessPiece(4, 0, ChessPlayer.BLACK, ChessRank.KING, R.drawable.black_king))
@@ -42,15 +41,23 @@ class ChessModel {
         return null
     }
 
-    private fun movePiece(fromRow: Int, fromCol: Int, toRow: Int, toCol: Int){
-        val movingPiece = pieceAt(fromRow, fromCol) ?: return
-
-        pieceAt(toRow, toCol)?.let {
-            if (it.player == movingPiece.player) return
-            piecesBox.remove(it)
+    fun regularMove(movingPiece: ChessPiece, toRow: Int, toCol: Int){
+        val capturedPiece = pieceAt(toRow, toCol)
+        if (capturedPiece != null){
+            if (capturedPiece.player == movingPiece.player) {
+                piecesBox.add(movingPiece)
+            } else {
+                piecesBox.remove(pieceAt(toRow, toCol))
+                piecesBox.add(ChessPiece(toCol, toRow, movingPiece.player, movingPiece.rank, movingPiece.resId))
+            }
+        } else {
+            piecesBox.add(ChessPiece(toCol, toRow, movingPiece.player, movingPiece.rank, movingPiece.resId))
         }
+    }
+
+    fun removePiece(row: Int, col: Int) {
+        val movingPiece = pieceAt(row, col) ?: return
         piecesBox.remove(movingPiece)
-        piecesBox.add(ChessPiece(toCol, toRow, movingPiece.player, movingPiece.rank, movingPiece.resId))
     }
 
     fun getChessBoard(): ArrayList<ArrayList<ChessPiece?>>{

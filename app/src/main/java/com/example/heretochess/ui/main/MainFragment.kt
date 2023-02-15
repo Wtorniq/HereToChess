@@ -9,12 +9,11 @@ import androidx.lifecycle.Observer
 import com.example.heretochess.App
 import com.example.heretochess.dagger.AppComponent
 import com.example.heretochess.databinding.FragmentMainBinding
-import com.example.heretochess.model.ChessModel
-import com.example.heretochess.model.ChessPiece
+import com.example.heretochess.model.chess.ChessPiece
 import com.example.heretochess.vm.MainViewModel
 
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), ChessViewInterface {
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -31,6 +30,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
+        binding.chessView.chessViewInterface = this
         return binding.root
     }
 
@@ -43,10 +43,18 @@ class MainFragment : Fragment() {
 
     private fun setBoard(board: ArrayList<ArrayList<ChessPiece?>>) = with(binding) {
         chessView.setModel(board)
-//        tv.text = board.chessModel.toString()
+        chessView.invalidate()
     }
 
     companion object {
         fun newInstance() = MainFragment()
+    }
+
+    override fun onRegularMove(movingPiece: ChessPiece, toRow: Int, toCol: Int) {
+        viewModel.regularMove(movingPiece, toRow, toCol)
+    }
+
+    override fun onRemovePiece(row: Int, col: Int) {
+        viewModel.removePiece(row, col)
     }
 }

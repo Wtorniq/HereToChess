@@ -1,6 +1,6 @@
 package com.example.heretochess.dagger
 
-import com.example.heretochess.model.ChessModel
+import com.example.heretochess.model.chess.ChessModel
 import dagger.Module
 import dagger.Provides
 
