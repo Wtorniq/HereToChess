@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -46,6 +47,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
 
     implementation 'com.google.dagger:dagger:2.44.2'
+    implementation 'com.google.firebase:firebase-database-ktx:20.0.4'
     kapt 'com.google.dagger:dagger-compiler:2.44.2'
 
     testImplementation 'junit:junit:4.13.2'

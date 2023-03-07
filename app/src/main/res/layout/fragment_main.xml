@@ -7,14 +7,28 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainFragment">
 
+    <include layout="@layout/fragment_main_opponent_console"
+        android:id="@+id/opponent_console"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/chess_view"
+        />
+
     <com.example.heretochess.ui.main.ChessView
         android:id="@+id/chess_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/opponent_console"
+        app:layout_constraintBottom_toTopOf="@+id/player_console"
         />
+
+    <include layout="@layout/fragment_main_player_console"
+        android:id="@+id/player_console"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/chess_view"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

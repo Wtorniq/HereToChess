@@ -1,5 +1,6 @@
 package com.example.heretochess.dagger
 
+import com.example.heretochess.model.cards.CardsModel
 import com.example.heretochess.model.chess.ChessModel
 import com.example.heretochess.vm.MainViewModel
 import dagger.Module
@@ -9,7 +10,7 @@ import dagger.Provides
 class MainModule {
 
     @Provides
-    fun provideViewModel(chessModel: ChessModel): MainViewModel{
-        return MainViewModel(chessModel)
+    fun provideViewModel(chessModel: ChessModel, cardsModel: CardsModel): MainViewModel{
+        return MainViewModel(chessModel, cardsModel)
     }
 }

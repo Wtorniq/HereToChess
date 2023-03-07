@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "85476978414",
+    "project_id": "heretochess",
+    "storage_bucket": "heretochess.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85476978414:android:3ed8a1ee4a174b448e8dff",
+        "android_client_info": {
+          "package_name": "com.example.heretochess"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "85476978414-52v7bavip5rkf6radtff9jlduq0tivdg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_Qa6_0VP1Z62XLKOvlzBQyo1eKCatByQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "85476978414-52v7bavip5rkf6radtff9jlduq0tivdg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

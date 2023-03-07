@@ -3,28 +3,38 @@ package com.example.heretochess.vm
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.heretochess.model.cards.Card
+import com.example.heretochess.model.cards.CardsModel
 import com.example.heretochess.model.chess.ChessModel
 import com.example.heretochess.model.chess.ChessPiece
 
-class MainViewModel(private val model: ChessModel) : ViewModel() {
+class MainViewModel(private val chessModel: ChessModel, private val cardsModel: CardsModel) : ViewModel() {
 
-    private val liveData = MutableLiveData<ArrayList<ArrayList<ChessPiece?>>>()
+    private val boardLiveData = MutableLiveData<ArrayList<ArrayList<ChessPiece?>>>()
+    private val handLiveData = MutableLiveData<ArrayList<Card>>()
 
-    fun getLiveData() : LiveData<ArrayList<ArrayList<ChessPiece?>>> = liveData
+    fun getBoardLiveData() : LiveData<ArrayList<ArrayList<ChessPiece?>>> = boardLiveData
+    fun getHandLiveData() = handLiveData
 
     fun getBoard() = getBoardFromModel()
 
+    fun getHand() = getHandFromModel()
+
+    private fun getHandFromModel(){
+        handLiveData.postValue(cardsModel.getHand())
+    }
+
     private fun getBoardFromModel() {
-        liveData.postValue(model.getChessBoard())
+        boardLiveData.postValue(chessModel.getChessBoard())
     }
 
     fun regularMove(movingPiece: ChessPiece, toRow: Int, toCol: Int) {
-        model.regularMove(movingPiece, toRow, toCol)
-        liveData.postValue(model.getChessBoard())
+        chessModel.regularMove(movingPiece, toRow, toCol)
+        boardLiveData.postValue(chessModel.getChessBoard())
     }
 
     fun removePiece(row: Int, col: Int) {
-        model.removePiece(row, col)
-        liveData.postValue(model.getChessBoard())
+        chessModel.removePiece(row, col)
+        boardLiveData.postValue(chessModel.getChessBoard())
     }
 }

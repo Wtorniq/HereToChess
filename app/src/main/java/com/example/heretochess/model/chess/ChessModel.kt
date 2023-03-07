@@ -30,8 +30,8 @@ class ChessModel {
         piecesBox.add(ChessPiece(3, 0, ChessPlayer.BLACK, ChessRank.QUEEN, R.drawable.black_queen))
 */
 
-        piecesBox.add(ChessPiece(4, 7, ChessPlayer.WHITE, ChessRank.KING, R.drawable.white_king))
-        piecesBox.add(ChessPiece(4, 0, ChessPlayer.BLACK, ChessRank.KING, R.drawable.black_king))
+        piecesBox.add(ChessPiece(7, 7, ChessPlayer.WHITE, ChessRank.KING, R.drawable.white_king))
+        piecesBox.add(ChessPiece(0, 0, ChessPlayer.BLACK, ChessRank.KING, R.drawable.black_king))
     }
 
     private fun pieceAt(row: Int, col: Int): ChessPiece? {

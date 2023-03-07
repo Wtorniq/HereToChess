@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/player_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="4dp"
+        android:text="PlayerName"
+        android:drawablePadding="4dp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:drawableLeftCompat="@drawable/ic_baseline_circle" />
+
+    <TextView
+        android:id="@+id/move_stage_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/border"
+        android:padding="4dp"
+        android:text="move"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/player_name_tv"
+        app:layout_constraintEnd_toStartOf="@+id/timer_tv"
+        />
+
+    <TextView
+        android:id="@+id/timer_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|end"
+        android:layout_margin="8dp"
+        android:background="@drawable/border"
+        android:padding="4dp"
+        android:text="00:00"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <LinearLayout
+        android:id="@+id/cards_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_buttons"
+        app:layout_constraintTop_toBottomOf="@+id/player_name_tv">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitXY"
+            android:src="@drawable/black_king" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitXY"
+            android:src="@drawable/black_king" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/cards_scroll"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <com.google.android.material.button.MaterialButton
+            style="@style/BottomButtonsStyle"
+            app:icon="@drawable/ic_baseline_format_list_bulleted" />
+        <com.google.android.material.button.MaterialButton
+            style="@style/BottomButtonsStyle"
+            app:icon="@drawable/ic_baseline_chat_bubble"/>
+        <com.google.android.material.button.MaterialButton
+            style="@style/BottomButtonsStyle"
+            app:icon="@drawable/ic_baseline_keyboard_double_arrow_left"/>
+        <com.google.android.material.button.MaterialButton
+            style="@style/BottomButtonsStyle"
+            app:icon="@drawable/ic_baseline_keyboard_double_arrow_right"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
