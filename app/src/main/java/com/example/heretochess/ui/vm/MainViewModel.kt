@@ -1,4 +1,4 @@
-package com.example.heretochess.vm
+package com.example.heretochess.ui.vm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

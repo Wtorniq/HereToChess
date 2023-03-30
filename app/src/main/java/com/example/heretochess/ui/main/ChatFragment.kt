@@ -85,6 +85,11 @@ class ChatFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
+
     companion object {
         @JvmStatic
         fun newInstance(userId: String, otherUserId : String, chatId : String?) =

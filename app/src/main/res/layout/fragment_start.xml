@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/start_fragment_container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.StartFragment">
 
-    <Button
-        android:id="@+id/auth_btn"
+    <EditText
+        android:id="@+id/lobby_name_edit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="auth" />
+        android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/create_btn"

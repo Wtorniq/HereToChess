@@ -1,12 +1,19 @@
 package com.example.heretochess.model.chess
 
 import com.example.heretochess.R
+import com.example.heretochess.model.firebase.FirebaseRepository
 
 class ChessModel {
+    private var gameId: String? = null
     private val piecesBox = mutableSetOf<ChessPiece>()
     private val chessModel = arrayListOf(arrayListOf<ChessPiece?>())
     init {
+        initGameId()
         reset()
+    }
+
+    private fun initGameId() {
+        gameId = FirebaseRepository().getGameId()
     }
 
     private fun reset(){

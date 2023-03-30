@@ -11,7 +11,7 @@ import com.example.heretochess.dagger.AppComponent
 import com.example.heretochess.databinding.FragmentMainBinding
 import com.example.heretochess.model.cards.Card
 import com.example.heretochess.model.chess.ChessPiece
-import com.example.heretochess.vm.MainViewModel
+import com.example.heretochess.ui.vm.MainViewModel
 
 
 class MainFragment : Fragment(), ChessViewInterface {
@@ -66,5 +66,10 @@ class MainFragment : Fragment(), ChessViewInterface {
 
     override fun onRemovePiece(row: Int, col: Int) {
         viewModel.removePiece(row, col)
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }
